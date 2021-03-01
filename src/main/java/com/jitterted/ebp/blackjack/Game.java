@@ -54,6 +54,7 @@ public class Game {
     deck = new Deck();
   }
 
+  //  FEATURE ENVY
   public void initialDeal() {
     dealerHand = new Hand();
     playerHand = new Hand();
@@ -89,6 +90,7 @@ public class Game {
         break;
       }
       if (playerChoice.startsWith("h")) {
+        // FEATURE ENVY
         drawCardIntoPlayerHand();
         playerBusted = playerHand.isBusted();
       } else {
