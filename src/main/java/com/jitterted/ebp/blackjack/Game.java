@@ -12,7 +12,9 @@ public class Game {
 
   private Hand dealerHand = new Hand();
   private Hand playerHand = new Hand();
+  // PRIMITIVE OBSESSION
   private int playerBalance = 0;
+  // PRIMITIVE OBSESSION
   private int playerBet = 0;
 
   public static void main(String[] args) {
