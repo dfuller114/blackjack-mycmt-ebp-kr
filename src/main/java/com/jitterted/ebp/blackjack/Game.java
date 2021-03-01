@@ -76,6 +76,7 @@ public class Game {
     playerHand.add(deck.draw());
   }
 
+  // LONG METHOD
   public void play() {
     // get Player's decision: hit until they stand, then they're done (or they go bust)
     boolean playerBusted = false;
