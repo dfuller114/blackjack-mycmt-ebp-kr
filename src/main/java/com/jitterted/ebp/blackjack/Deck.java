@@ -7,6 +7,7 @@ import java.util.List;
 public class Deck {
   private final List<Card> cards = new ArrayList<>();
 
+  // LONG METHOD
   public Deck() {
     List<String> cardValues = new ArrayList<>();
     cardValues.add("A");
