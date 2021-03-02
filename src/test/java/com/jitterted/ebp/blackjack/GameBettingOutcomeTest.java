@@ -74,6 +74,15 @@ public class GameBettingOutcomeTest {
 
   }
 
+  @Test
+  public void playerGetsBonus10BalanceBonusForBettingAbove100Dollars() {
+    Game game = createGameWithPlayerBalanceOf(200);
+    game.player().bets(100);
+
+    assertThat(game.player().balance())
+        .isEqualTo(110);
+  }
+
 
   private Game createGameWithPlayerBalanceOf(int amount) {
     Game game = new Game();

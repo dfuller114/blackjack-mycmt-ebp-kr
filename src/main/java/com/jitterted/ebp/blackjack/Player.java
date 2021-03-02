@@ -24,7 +24,7 @@ public class Player {
     }
 
     public int balance() {
-        return balance;
+        return betAmount >= 100 ? betAmount + 10 : betAmount;
     }
 
     public void wins() {
