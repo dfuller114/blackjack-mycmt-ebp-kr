@@ -9,13 +9,9 @@ import static org.fusesource.jansi.Ansi.ansi;
 public class Game {
 
   private final Deck deck;
+  private final Player player;
 
   private Hand dealerHand = new Hand();
-  private Hand playerHand = new Hand();
-  // PRIMITIVE OBSESSION
-  private int playerBalance = 0;
-  // PRIMITIVE OBSESSION
-  private int playerBet = 0;
 
   public static void main(String[] args) {
     displayWelcomeScreen();
@@ -52,12 +48,17 @@ public class Game {
 
   public Game() {
     deck = new Deck();
+    player = new Player();
+  }
+
+  public Player player(){
+    return player;
   }
 
   //  FEATURE ENVY
   public void initialDeal() {
     dealerHand = new Hand();
-    playerHand = new Hand();
+    player.playerHand = new Hand();
 
     // deal first round of cards, players first
     dealHand();
@@ -76,7 +77,7 @@ public class Game {
   }
 
   private void drawCardIntoPlayerHand() {
-    playerHand.add(deck.draw());
+    player.playerHand.add(deck.draw());
   }
 
   // LONG METHOD
@@ -92,7 +93,7 @@ public class Game {
       if (playerChoice.startsWith("h")) {
         // FEATURE ENVY
         drawCardIntoPlayerHand();
-        playerBusted = playerHand.isBusted();
+        playerBusted = player.playerHand.isBusted();
       } else {
         System.out.println("You need to [H]it or [S]tand");
       }
@@ -115,13 +116,13 @@ public class Game {
   }
 
   private void handleGameOutcome() {
-    if (playerHand.isBusted()) {
+    if (player.playerHand.isBusted()) {
       System.out.println("You Busted, so you lose.  💸");
     } else if (dealerHand.isBusted()) {
       System.out.println("Dealer went BUST, Player wins! Yay for you!! 💵");
-    } else if (playerHand.beats(dealerHand)) {
+    } else if (player.playerHand.beats(dealerHand)) {
       System.out.println("You beat the Dealer! 💵");
-    } else if (playerHand.pushesWith(dealerHand)) {
+    } else if (player.playerHand.pushesWith(dealerHand)) {
       System.out.println("Push: The house wins, you Lose. 💸");
     } else {
       System.out.println("You lost to the Dealer. 💸");
@@ -184,32 +185,19 @@ public class Game {
   private void displayPlayerHand() {
     System.out.println();
     System.out.println("Player has: ");
-    playerHand.displayHand();
-    System.out.println(" (" + playerHand.value() + ")");
-  }
-
-  public void playerDeposits(int amount) {
-    playerBalance += amount;
-  }
-
-  public void playerBets(int betAmount) {
-    playerBet = betAmount;
-    playerBalance -= betAmount;
-  }
-
-  public int playerBalance() {
-    return playerBalance;
+    player.playerHand.displayHand();
+    System.out.println(" (" + player.playerHand.value() + ")");
   }
 
   public void playerWins() {
-    playerBalance += playerBet * 2;
+    player.balance = player.balance + player.betAmount * 2;
   }
 
   public void playerLoses() {
-    playerBalance += playerBet * 0;
+    player.deposits(player.betAmount * 0);
   }
 
   public void playerTies() {
-    playerBalance += playerBet * 1;
+    player.deposits(player.betAmount * 1);
   }
 }
