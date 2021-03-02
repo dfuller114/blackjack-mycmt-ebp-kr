@@ -15,7 +15,12 @@ public class Player {
 
     public void bets(int betAmount) {
         this.betAmount = betAmount;
+        this.totalAmountBet += betAmount;
         this.balance -= betAmount;
+    }
+
+    public int totalAmountBet() {
+        return totalAmountBet;
     }
 
     public int balance() {

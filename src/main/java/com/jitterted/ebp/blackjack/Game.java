@@ -48,7 +48,12 @@ public class Game {
 
   public Game() {
     deck = new Deck();
-    player = new Player();
+    this.player = new Player();
+  }
+
+  public Game(Player player) {
+    deck = new Deck();
+    this.player = player;
   }
 
   public Player player(){

@@ -60,6 +60,20 @@ public class GameBettingOutcomeTest {
         .isEqualTo(18);
   }
 
+  @Test
+  public void playersBets25InTwoGames() {
+    Player player = new Player();
+    Game game1 = new Game(player);
+    game1.player().bets(25);
+
+    Game game2 = new Game(player);
+    game2.player().bets(25);
+
+    assertThat(player.totalAmountBet())
+        .isEqualTo(50);
+
+  }
+
 
   private Game createGameWithPlayerBalanceOf(int amount) {
     Game game = new Game();
