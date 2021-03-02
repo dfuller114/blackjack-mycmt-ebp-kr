@@ -14,7 +14,7 @@ public class GameBettingOutcomeTest {
     Game game = createGameWithPlayerBalanceOf(20);
     game.player().bets(10);
 
-    game.playerWins();
+    game.player().wins();
 
     assertThat(game.player().balance())
         .isEqualTo(30);
@@ -25,7 +25,7 @@ public class GameBettingOutcomeTest {
     Game game = createGameWithPlayerBalanceOf(80);
     game.player().bets(70);
 
-    game.playerTies();
+    game.player().ties();
 
     assertThat(game.player().balance())
         .isEqualTo(80);
@@ -36,7 +36,7 @@ public class GameBettingOutcomeTest {
     Game game = createGameWithPlayerBalanceOf(35);
 
     game.player().bets(30);
-    game.playerLoses();
+    game.player().loses();
 
     assertThat(game.player().balance())
         .isEqualTo(5);

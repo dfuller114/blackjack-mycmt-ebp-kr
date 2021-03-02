@@ -9,7 +9,7 @@ import static org.fusesource.jansi.Ansi.ansi;
 public class Game {
 
   private final Deck deck;
-  private final Player player;
+  final Player player;
 
   private Hand dealerHand = new Hand();
 
@@ -189,15 +189,4 @@ public class Game {
     System.out.println(" (" + player.playerHand.value() + ")");
   }
 
-  public void playerWins() {
-    player.balance = player.balance + player.betAmount * 2;
-  }
-
-  public void playerLoses() {
-    player.deposits(player.betAmount * 0);
-  }
-
-  public void playerTies() {
-    player.deposits(player.betAmount * 1);
-  }
 }
